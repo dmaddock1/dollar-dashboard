@@ -16,6 +16,7 @@ import Candidate from "./components/Candidate";
 import Regulation from "./components/Regulation";
 import Pool from "./components/Pool";
 import HomePageNoWeb3 from "./components/HomePageNoWeb3";
+import { BrandedThemeLight, BrandedThemeDark } from "./themes";
 
 function App() {
   const storedTheme = getPreference('theme', 'light');
@@ -50,9 +51,11 @@ function App() {
     };
   }, [user]);
 
+  const brandedTheme = (theme === 'light') ? BrandedThemeLight : BrandedThemeDark;
+
   return (
     <Router>
-      <Main assetsUrl={`${process.env.PUBLIC_URL}/aragon-ui/`} theme={theme}>
+      <Main assetsUrl={`${process.env.PUBLIC_URL}/aragon-ui/`} theme={brandedTheme}>
         <NavBar hasWeb3={hasWeb3} user={user} setUser={setUser} theme={theme} updateTheme={updateTheme}/>
         {
           hasWeb3 ?
